@@ -26,3 +26,20 @@ Checkout to the appropriate branch
 Don't forget to pull branch one time per day at least 
 
 Commit your changes into the appropriate folder in the repository
+
+
+Generate SSH KEY on Linux
+=========================
+Into terminal run command for generate SSH KEY:
+
+    ssh-keygen -t rsa -C "your_email@example.com"
+  
+    ssh-add id_rsa
+  
+Copy SSH KEY
+============
+Install xclip for copy SSH KEY:
+
+    sudo apt-get install xclip
+    
+    xclip -sel clip < ~/.ssh/id_rsa.pub
