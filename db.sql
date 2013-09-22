@@ -5,32 +5,27 @@ use library_db;
     
 CREATE TABLE category (
     id INT(4) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(64) NOT NULL
-);
+    name VARCHAR(64) NOT NULL);
 
 CREATE TABLE subject (
     id INT(4) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     name VARCHAR(64) NOT NULL,
-    categoryID INT(4) NOT NULL
-);
+    categoryID INT(4) NOT NULL);
 
 CREATE TABLE book_authors (
     id INT(4) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(64) NOT NULL
-);
+    name VARCHAR(64) NOT NULL);
 
 CREATE TABLE library_books (
     id INT(4) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     subjectID INT(4) NOT NULL,
     authorID INT(4) NOT NULL,
     title VARCHAR(128) NOT NULL,
-    amount INT(4) NOT NULL
-);
+    amount INT(4) NOT NULL);
 
 CREATE TABLE roles (
     id INT(4) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(64) NOT NULL
-);
+    name VARCHAR(64) NOT NULL);
 
 CREATE TABLE workers (
     id INT(4) AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -38,16 +33,14 @@ CREATE TABLE workers (
     fName VARCHAR(64) NOT NULL,
     lName VARCHAR(64) NOT NULL,
     login VARCHAR(64) NOT NULL,
-    password VARCHAR(20) NOT NULL
-);
+    password VARCHAR(20) NOT NULL);
 
 CREATE TABLE readers (
     id INT(4) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     fName VARCHAR(64) NOT NULL,
     lName VARCHAR(64) NOT NULL,
     reg_date date NOT NULL,
-    reg_period INT(4) NOT NULL
-);
+    reg_period INT(4) NOT NULL);
 
 CREATE TABLE books_monitor (
     id INT(4) AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -55,8 +48,7 @@ CREATE TABLE books_monitor (
     workerID INT(4) NOT NULL,
     readerID INT(4) NOT NULL,
     issue_date date NOT NULL,
-    return_date date NOT NULL
-);
+    return_date date NOT NULL);
 
 ALTER TABLE `subject`
 ADD FOREIGN KEY(`categoryID`) REFERENCES `category`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
