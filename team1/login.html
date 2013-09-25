@@ -6,11 +6,12 @@
 </head>
 <body>
     <form id="form" method="POST">
-        <input id="input_login" type="text" name="login" placeholder="Login" required>
-        <input id="input_password" type="password" name="password" placeholder="Password" required>
-        <input id="input_passwordCheck" type="password" name="passwordCheck" placeholder="Repeat password" required>
-        <input id="hash" type="hidden">
-        <button id="but_Submit" type="submit">Login</button>
+        <input id="inputLogin" type="text" name="login" placeholder="Login" required/><label id="labelLogin"></label><br />
+        <input id="inputPass1" type="password" name="password1" placeholder="Password" required/><label id="labelPass1"></label><br/>
+        <input id="inputPass2" type="password" name="password2" placeholder="Repeat password" required/><label id="labelPass2"></label><br/>
+        <input id="hash" type="hidden" />
+        <input id="checkBox" type="checkbox" name="checkBox">Are you agree with <a href="#">rules</a></form>
+        <button id="but_Submit" type="submit" disabled>Login</button>
     </form>
 </body>
 </html>

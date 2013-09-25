@@ -1,57 +1,116 @@
 window.onload = function()
 {
-    /*
-    *   but_Submit
-    */
-    var but_Submit = document.getElementById('form');
-    but_Submit.onsubmit = function()
+    var login, pass1, pass2;
+    /*  Inputs events   */
+    var objLogin = document.getElementById('inputLogin')
+    objLogin.onkeyup = function()
     {
-        var reLogin = /^[a-zA-Z]*[0-9]*?[_]?[a-zA-Z]*?[0-9]*?$/;
-        var rePassword = /^[a-zA-Z0-9?]{4,32}$/;
-        alert('lol');
-        //Getting the inputs
-        var strLogin = document.getElementById('input_login').value;
-        var strPass1 = document.getElementById('input_password').value;
-        var strPass2 = document.getElementById('input_passwordCheck').value;
-        alert("after taking strings");
-        if(isFineTest(reLogin, strLogin))
+        login = checkFields(this);
+    }
+    var objPass1 = document.getElementById('inputPass1');
+    objPass1.onkeyup = function()
+    {
+        pass1 = checkFields(this);
+        pass2 = isEquivalent(objPass1.value, objPass2.value)
+        
+    }
+    var objPass2 = document.getElementById('inputPass2');
+    objPass2.onkeyup = function()
+    {
+        pass2 = isEquivalent(objPass1.value, objPass2.value);
+    }
+
+    var form = document.getElementById('form');
+    document.getElementById('checkBox').onclick = function()
+    {
+        if(login && pass1 && pass2)
         {
-            if(isFineTest(rePassword, strPass1))
+            document.getElementById('but_Submit').disabled = false;
+        }
+        else
+        {
+            document.getElementById('but_Submit').disabled = true;
+        }
+    }
+
+    /*  Submit button pressed   */
+    form.onsubmit = function()
+    {
+        objLogin.readOnly = true;
+        objPass1.readOnly = true;
+        objPass2.readOnly = true;
+
+        // input_login.setAttribute('disabled', 'disabled');
+        //Taking the values
+        // var login = input_login.value;
+        //Hashing
+        var hashPass = Sha1.hash(objPass2.value, false);
+        //Selecting hidden input
+        var input_hash = document.getElementById('hash');
+        //Seting the hash value
+        input_hash.value = hashPass;
+
+        alert("Login: " + objLogin.value +
+            "\nPassword 1: " + objPass1.value +
+            "\nPassword 2: " + objPass2.value +
+            "\nHashedPassword: "+ input_hash.value
+            );
+    }
+}
+
+function checkFields(obj, isEq)
+{
+    //RegEx
+    if(obj.name == 'login')
+    {
+        var re = /^[a-zA-Z]*[0-9]*?[_]?[a-zA-Z]*?[0-9]*?$/;
+        var label = 'labelLogin';
+        var strObj = 'Login';
+    }
+    else
+        if(obj.name == 'password1')
+        {
+            var re = /^[a-zA-Z0-9?]{4,32}$/;
+            var label = 'labelPass1';
+            var strObj = 'Password';
+        }
+    /*else
+        if(obj.name == 'password2')
+        {
+            var re = /^[a-zA-Z0-9?]{4,32}$/;
+            var label = 'labelPass2';
+            var strObj = 'Password';
+        }*/
+
+    var str = obj.value;   //String to check
+
+    if(str.length != 0)
+    {
+        //alert("in != 0_" + strLogin);
+        if(str.length > 3 && str.length < 17)
+        {
+            //alert("in >4 <16_" + strLogin);
+            if(isFineTest(re, str))
             {
-                if(strPass1 == strPass2)
-                {
-                    //Locking inputs
-                    document.getElementById('input_login').readOnly = true;
-                    document.getElementById('input_password').readOnly = true;
-
-                    // input_login.setAttribute('disabled', 'disabled');
-                    //Taking the values
-                    // var login = input_login.value;
-                    //Hashing
-                    var hashPass = Sha1.hash(strPass1, false);
-                    //Selecting hidden input
-                    var input_hash = document.getElementById('hash');
-                    //Seting the hash value
-                    input_hash.value = hashPass;
-
-                    alert("Login: " + strLogin + "\nPassword: " + strPass1 + 
-                        "\nHashedPassword: "+ input_hash.value);
-                }
-                else
-                {
-                    alert("Passwords do not much!");
-                }
+                producePrompt("Good", label, 'green');
+                return true;
             }
             else
             {
-                alert("Password must have only characters and numbers!");
+                producePrompt(strObj + " can't have a special symbols", label, 'red');
+                return false;
             }
         }
         else
         {
-            alert("Login have special symbols!");
+            producePrompt(strObj + " must have 4-16 characters", label, 'red');
+            return false;
         }
-        
+    }
+    else
+    {
+        producePrompt("This field can't be empty", label, 'red');
+        return false;
     }
 }
 
@@ -64,12 +123,32 @@ function isFineTest(reg, str)
     else
         return false;
 }
+
 function isEquivalent(str1, str2)
 {
-    if(str1 == str2)
+    if(str2 == str1 && str2 != 0)
+    {
+        producePrompt("Good", 'labelPass2', 'green');
+        //alert('isEq = true')
         return true;
+    }
     else
+    {
+        producePrompt("Passwords are not matched", 'labelPass2', 'red');
+        //alert('isEq = false')
         return false;
+    }
+}
+
+function producePrompt(message, labelId, color)
+{
+    /*
+    message - what to write in the label
+    labelId - label id
+    color - label text color
+    */
+    document.getElementById(labelId).innerHTML = message;
+    document.getElementById(labelId).style.color = color;
 }
 /*      End of code      */
 
@@ -77,7 +156,7 @@ function isEquivalent(str1, str2)
 /*      Libraries      */
 
 var Sha1 = {};  // Sha1 namespace
-/**
+/*
  * Generates SHA-1 hash of string
  *
  * @param {String} msg                String to be hashed
@@ -85,95 +164,94 @@ var Sha1 = {};  // Sha1 namespace
  * @returns {String}                  Hash of msg as hex character string
  */
 Sha1.hash = function(msg, utf8encode) {
-  utf8encode =  (typeof utf8encode == 'undefined') ? true : utf8encode;
-  
-  // convert string to UTF-8, as SHA only deals with byte-streams
-  if (utf8encode) msg = Utf8.encode(msg);
-  
-  // constants [§4.2.1]
-  var K = [0x5a827999, 0x6ed9eba1, 0x8f1bbcdc, 0xca62c1d6];
-  
-  // PREPROCESSING 
-  
-  msg += String.fromCharCode(0x80);  // add trailing '1' bit (+ 0's padding) to string [§5.1.1]
-  
-  // convert string msg into 512-bit/16-integer blocks arrays of ints [§5.2.1]
-  var l = msg.length/4 + 2;  // length (in 32-bit integers) of msg + ‘1’ + appended length
-  var N = Math.ceil(l/16);   // number of 16-integer-blocks required to hold 'l' ints
-  var M = new Array(N);
-  
-  for (var i=0; i<N; i++) {
-    M[i] = new Array(16);
-    for (var j=0; j<16; j++) {  // encode 4 chars per integer, big-endian encoding
-      M[i][j] = (msg.charCodeAt(i*64+j*4)<<24) | (msg.charCodeAt(i*64+j*4+1)<<16) | 
-        (msg.charCodeAt(i*64+j*4+2)<<8) | (msg.charCodeAt(i*64+j*4+3));
-    } // note running off the end of msg is ok 'cos bitwise ops on NaN return 0
-  }
-  // add length (in bits) into final pair of 32-bit integers (big-endian) [§5.1.1]
-  // note: most significant word would be (len-1)*8 >>> 32, but since JS converts
-  // bitwise-op args to 32 bits, we need to simulate this by arithmetic operators
-  M[N-1][14] = ((msg.length-1)*8) / Math.pow(2, 32); M[N-1][14] = Math.floor(M[N-1][14])
-  M[N-1][15] = ((msg.length-1)*8) & 0xffffffff;
-  
-  // set initial hash value [§5.3.1]
-  var H0 = 0x67452301;
-  var H1 = 0xefcdab89;
-  var H2 = 0x98badcfe;
-  var H3 = 0x10325476;
-  var H4 = 0xc3d2e1f0;
-  
-  // HASH COMPUTATION [§6.1.2]
-  
-  var W = new Array(80); var a, b, c, d, e;
-  for (var i=0; i<N; i++) {
-  
-    // 1 - prepare message schedule 'W'
-    for (var t=0;  t<16; t++) W[t] = M[i][t];
-    for (var t=16; t<80; t++) W[t] = Sha1.ROTL(W[t-3] ^ W[t-8] ^ W[t-14] ^ W[t-16], 1);
+    utf8encode =  (typeof utf8encode == 'undefined') ? true : utf8encode;
     
-    // 2 - initialise five working variables a, b, c, d, e with previous hash value
-    a = H0; b = H1; c = H2; d = H3; e = H4;
+    // convert string to UTF-8, as SHA only deals with byte-streams
+    if (utf8encode) msg = Utf8.encode(msg);
     
-    // 3 - main loop
-    for (var t=0; t<80; t++) {
-      var s = Math.floor(t/20); // seq for blocks of 'f' functions and 'K' constants
-      var T = (Sha1.ROTL(a,5) + Sha1.f(s,b,c,d) + e + K[s] + W[t]) & 0xffffffff;
-      e = d;
-      d = c;
-      c = Sha1.ROTL(b, 30);
-      b = a;
-      a = T;
+    // constants [§4.2.1]
+    var K = [0x5a827999, 0x6ed9eba1, 0x8f1bbcdc, 0xca62c1d6];
+    
+    // PREPROCESSING 
+    
+    msg += String.fromCharCode(0x80);  // add trailing '1' bit (+ 0's padding) to string [§5.1.1]
+    
+    // convert string msg into 512-bit/16-integer blocks arrays of ints [§5.2.1]
+    var l = msg.length/4 + 2;  // length (in 32-bit integers) of msg + ‘1’ + appended length
+    var N = Math.ceil(l/16);   // number of 16-integer-blocks required to hold 'l' ints
+    var M = new Array(N);
+    
+    for (var i=0; i<N; i++) {
+        M[i] = new Array(16);
+        for (var j=0; j<16; j++) {  // encode 4 chars per integer, big-endian encoding
+            M[i][j] = (msg.charCodeAt(i*64+j*4)<<24) | (msg.charCodeAt(i*64+j*4+1)<<16) | 
+              (msg.charCodeAt(i*64+j*4+2)<<8) | (msg.charCodeAt(i*64+j*4+3));
+        } // note running off the end of msg is ok 'cos bitwise ops on NaN return 0
     }
+    // add length (in bits) into final pair of 32-bit integers (big-endian) [§5.1.1]
+    // note: most significant word would be (len-1)*8 >>> 32, but since JS converts
+    // bitwise-op args to 32 bits, we need to simulate this by arithmetic operators
+    M[N-1][14] = ((msg.length-1)*8) / Math.pow(2, 32); M[N-1][14] = Math.floor(M[N-1][14])
+    M[N-1][15] = ((msg.length-1)*8) & 0xffffffff;
     
-    // 4 - compute the new intermediate hash value
-    H0 = (H0+a) & 0xffffffff;  // note 'addition modulo 2^32'
-    H1 = (H1+b) & 0xffffffff; 
-    H2 = (H2+c) & 0xffffffff; 
-    H3 = (H3+d) & 0xffffffff; 
-    H4 = (H4+e) & 0xffffffff;
-  }
+    // set initial hash value [§5.3.1]
+    var H0 = 0x67452301;
+    var H1 = 0xefcdab89;
+    var H2 = 0x98badcfe;
+    var H3 = 0x10325476;
+    var H4 = 0xc3d2e1f0;
+    
+    // HASH COMPUTATION [§6.1.2]
+    
+    var W = new Array(80); var a, b, c, d, e;
+    for (var i=0; i<N; i++) {
+        // 1 - prepare message schedule 'W'
+        for (var t=0;  t<16; t++) W[t] = M[i][t];
+        for (var t=16; t<80; t++) W[t] = Sha1.ROTL(W[t-3] ^ W[t-8] ^ W[t-14] ^ W[t-16], 1);
+        
+        // 2 - initialise five working variables a, b, c, d, e with previous hash value
+        a = H0; b = H1; c = H2; d = H3; e = H4;
+        
+        // 3 - main loop
+        for (var t=0; t<80; t++) {
+            var s = Math.floor(t/20); // seq for blocks of 'f' functions and 'K' constants
+            var T = (Sha1.ROTL(a,5) + Sha1.f(s,b,c,d) + e + K[s] + W[t]) & 0xffffffff;
+            e = d;
+            d = c;
+            c = Sha1.ROTL(b, 30);
+            b = a;
+            a = T;
+        }
+        
+        // 4 - compute the new intermediate hash value
+        H0 = (H0+a) & 0xffffffff;  // note 'addition modulo 2^32'
+        H1 = (H1+b) & 0xffffffff; 
+        H2 = (H2+c) & 0xffffffff; 
+        H3 = (H3+d) & 0xffffffff; 
+        H4 = (H4+e) & 0xffffffff;
+    }
 
-  return Sha1.toHexStr(H0) + Sha1.toHexStr(H1) + 
-    Sha1.toHexStr(H2) + Sha1.toHexStr(H3) + Sha1.toHexStr(H4);
+    return Sha1.toHexStr(H0) + Sha1.toHexStr(H1) + 
+      Sha1.toHexStr(H2) + Sha1.toHexStr(H3) + Sha1.toHexStr(H4);
 }
 
 //
 // function 'f' [§4.1.1]
 //
 Sha1.f = function(s, x, y, z)  {
-  switch (s) {
-  case 0: return (x & y) ^ (~x & z);           // Ch()
-  case 1: return x ^ y ^ z;                    // Parity()
-  case 2: return (x & y) ^ (x & z) ^ (y & z);  // Maj()
-  case 3: return x ^ y ^ z;                    // Parity()
-  }
+    switch (s) {
+        case 0: return (x & y) ^ (~x & z);           // Ch()
+        case 1: return x ^ y ^ z;                    // Parity()
+        case 2: return (x & y) ^ (x & z) ^ (y & z);  // Maj()
+        case 3: return x ^ y ^ z;                    // Parity()
+    }
 }
 
 //
 // rotate left (circular left shift) value x by n positions [§3.2.5]
 //
 Sha1.ROTL = function(x, n) {
-  return (x<<n) | (x>>>(32-n));
+    return (x<<n) | (x>>>(32-n));
 }
 
 //
@@ -182,9 +260,9 @@ Sha1.ROTL = function(x, n) {
 //   in IE returns signed numbers when used on full words)
 //
 Sha1.toHexStr = function(n) {
-  var s="", v;
-  for (var i=7; i>=0; i--) { v = (n>>>(i*4)) & 0xf; s += v.toString(16); }
-  return s;
+    var s="", v;
+    for (var i=7; i>=0; i--) { v = (n>>>(i*4)) & 0xf; s += v.toString(16); }
+    return s;
 }
 
 
@@ -205,21 +283,21 @@ var Utf8 = {};  // Utf8 namespace
  * @returns {String} encoded string
  */
 Utf8.encode = function(strUni) {
-  // use regular expressions & String.replace callback function for better efficiency 
-  // than procedural approaches
-  var strUtf = strUni.replace(
-      /[\u0080-\u07ff]/g,  // U+0080 - U+07FF => 2 bytes 110yyyyy, 10zzzzzz
-      function(c) { 
-        var cc = c.charCodeAt(0);
-        return String.fromCharCode(0xc0 | cc>>6, 0x80 | cc&0x3f); }
+    // use regular expressions & String.replace callback function for better efficiency 
+    // than procedural approaches
+    var strUtf = strUni.replace(
+        /[\u0080-\u07ff]/g,  // U+0080 - U+07FF => 2 bytes 110yyyyy, 10zzzzzz
+        function(c) { 
+          var cc = c.charCodeAt(0);
+          return String.fromCharCode(0xc0 | cc>>6, 0x80 | cc&0x3f); }
     );
-  strUtf = strUtf.replace(
-      /[\u0800-\uffff]/g,  // U+0800 - U+FFFF => 3 bytes 1110xxxx, 10yyyyyy, 10zzzzzz
-      function(c) { 
+    strUtf = strUtf.replace(
+        /[\u0800-\uffff]/g,  // U+0800 - U+FFFF => 3 bytes 1110xxxx, 10yyyyyy, 10zzzzzz
+    function(c) { 
         var cc = c.charCodeAt(0); 
         return String.fromCharCode(0xe0 | cc>>12, 0x80 | cc>>6&0x3F, 0x80 | cc&0x3f); }
     );
-  return strUtf;
+    return strUtf;
 }
 
 /**
@@ -229,18 +307,18 @@ Utf8.encode = function(strUni) {
  * @returns {String} decoded string
  */
 Utf8.decode = function(strUtf) {
-  // note: decode 3-byte chars first as decoded 2-byte strings could appear to be 3-byte char!
-  var strUni = strUtf.replace(
-      /[\u00e0-\u00ef][\u0080-\u00bf][\u0080-\u00bf]/g,  // 3-byte chars
-      function(c) {  // (note parentheses for precence)
-        var cc = ((c.charCodeAt(0)&0x0f)<<12) | ((c.charCodeAt(1)&0x3f)<<6) | ( c.charCodeAt(2)&0x3f); 
-        return String.fromCharCode(cc); }
+    // note: decode 3-byte chars first as decoded 2-byte strings could appear to be 3-byte char!
+    var strUni = strUtf.replace(
+        /[\u00e0-\u00ef][\u0080-\u00bf][\u0080-\u00bf]/g,  // 3-byte chars
+        function(c) {  // (note parentheses for precence)
+          var cc = ((c.charCodeAt(0)&0x0f)<<12) | ((c.charCodeAt(1)&0x3f)<<6) | ( c.charCodeAt(2)&0x3f); 
+          return String.fromCharCode(cc); }
     );
-  strUni = strUni.replace(
-      /[\u00c0-\u00df][\u0080-\u00bf]/g,                 // 2-byte chars
-      function(c) {  // (note parentheses for precence)
-        var cc = (c.charCodeAt(0)&0x1f)<<6 | c.charCodeAt(1)&0x3f;
-        return String.fromCharCode(cc); }
+    strUni = strUni.replace(
+        /[\u00c0-\u00df][\u0080-\u00bf]/g,                 // 2-byte chars
+        function(c) {  // (note parentheses for precence)
+          var cc = (c.charCodeAt(0)&0x1f)<<6 | c.charCodeAt(1)&0x3f;
+          return String.fromCharCode(cc); }
     );
-  return strUni;
+    return strUni;
 }
