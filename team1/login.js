@@ -8,12 +8,12 @@ window.onload = function()
     {
         var reLogin = /^[a-zA-Z]*[0-9]*?[_]?[a-zA-Z]*?[0-9]*?$/;
         var rePassword = /^[a-zA-Z0-9?]{4,32}$/;
-        alert('lol');
+        
         //Getting the inputs
         var strLogin = document.getElementById('input_login').value;
         var strPass1 = document.getElementById('input_password').value;
         var strPass2 = document.getElementById('input_passwordCheck').value;
-        alert("after taking strings");
+        
         if(isFineTest(reLogin, strLogin))
         {
             if(isFineTest(rePassword, strPass1))
