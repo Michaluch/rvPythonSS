@@ -1,0 +1,116 @@
+body
+{
+	margin:0;
+	padding:0;
+}
+
+p {
+	margin:10px 0 10px 0}
+
+#content{
+	margin-left:auto;
+	margin-right:auto;
+	width:1330px;
+	font-family:Garamond;
+	font-size:17px;
+	overflow:hidden;
+	margin-top:5px;
+}
+
+#categories{
+	width:337px;
+	overflow:auto;
+	float:left;
+	font-family:Verdana
+}
+
+#categories p{
+	margin: 18px 0 0 24px
+}
+
+#course-details{
+	width:921px;
+	overflow:auto;
+	float:rigth;
+}
+
+#categ{
+	height:46px;
+	width:100%
+}
+
+#cont-image{
+margin:14px 0 24px 16px;
+width:1264px;
+height:242px;
+background-image: url('../static/girl.png');
+background-size: 100% 100%
+}
+
+#search-navigation{
+height: 60px;
+width: 100%;
+margin: 20px 0 28px
+}
+
+input[type=text]
+{
+	background-color: #F7F7F7;
+	border:solid 3px #4B4D4D;
+	border-radius:7px;
+	color: #BDBDBD;
+	margin:147px 0 0 40px;
+	font-size: 17px;
+	width: 510px;
+	height: 52px;
+	font-style: italic;
+	padding-left: 24px;
+	font-size: 125%;
+	float:left
+}
+
+#nav{
+	float:right;
+	height: 54px;
+	margin: 20px 40px 0 0
+}
+
+#nav p{
+	margin-top: 20px
+}
+
+#courses{
+	color:#FAFBFC
+}
+
+#courses a{
+	text-decoration:none;
+	color:#FAFBFC;
+}
+
+#start{
+	float:right;
+	margin: 0 20px 20px 0
+}
+
+#courses p{
+	margin:0
+}
+
+.block{
+	width: 400px;
+	height:225px;
+	float:left;
+	margin: 16px;
+	color: #F7F8F6;
+	text-align:justify;
+	text-justify:inter-word;
+	background-color: grey;
+	display: block;
+}
+
+.text{
+	width:360px;
+	margin:20px
+}
+ 
