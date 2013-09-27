@@ -13,11 +13,22 @@ from .models import (
     check_login
     )
 
-menu_links = [{'link': '#', 'text': 'About Us'},
-              {'link': '#', 'text': 'Courses'},
-              {'link': '#', 'text': 'Sign In'},
-              {'link': '/signup', 'text': 'Sign Up'}]
+menu_links_in = [{'link': '#', 'text': 'About Us'},
+                 {'link': '#', 'text': 'Courses'},
+                 {'link': '/logout', 'text': 'Logout'},
+]
+menu_links_out = [{'link': '#', 'text': 'About Us'},
+                  {'link': '#', 'text': 'Courses'},
+                  {'link': '#', 'text': 'Sign In'},
+                  {'link': '/signup', 'text': 'Sign Up'},
+]
+
 footer_links = ('About Us', 'Courses', 'Terms')
+
+
+@view_config(renderer='templates/layout.jinja2', route_name='jinja')
+def index(request):
+    return {'hello': 'world'}
 
 
 @view_config(renderer='templates/login.pt',
@@ -26,7 +37,7 @@ footer_links = ('About Us', 'Courses', 'Terms')
 def login_view(request):
     return {'app_url': request.application_url,
             'message': 'Please Login!',
-            'menu_links': menu_links,
+            'menu_links': menu_links_out,
             'footer_links': footer_links}
 
 
@@ -39,20 +50,19 @@ def login_post(request):
 
     if check_login(login, password):
         headers = remember(request, login)
-        return HTTPFound(location='/',
-                         headers=headers)
+        return HTTPFound(location='/', headers=headers)
+
     message = 'Failed login'
     return {'app_url': request.application_url,
             'message': message,
-            'menu_links': menu_links,
+            'menu_links': menu_links_out,
             'footer_links': footer_links}
 
 
 @view_config(route_name='logout')
 def logout(request):
     headers = forget(request)
-    return HTTPFound(location='/',
-                     headers=headers)
+    return HTTPFound(location='/', headers=headers)
 
 
 @view_config(route_name='home',
@@ -65,10 +75,10 @@ def home(request):
         if request.params['num_boxes']:
             num_boxes = request.params['num_boxes']
     return {'app_url': request.application_url,
-            'message': '{}'.format(userid),
-            'menu_links': menu_links[0:2],
+            'menu_links': menu_links_in,
             'footer_links': footer_links,
-            'boxes': generate_box(num_boxes)}
+            'boxes': generate_box(num_boxes),
+            'user': userid}
 
 
 @view_config(route_name='signup',
@@ -86,9 +96,12 @@ def signup(request):
 
     login_db = session.query(Users).filter_by(login=login).first()
 
-    # password = request.params.get('password')
+    # password = request.params.get('password1')
+    # passwordCheck = request.params.get('password2')
     hashed_password = request.params.get('hash')
     # print '####################################'
+    # print password
+    # print passwordCheck
     # print hashed_password
     # print '####################################'
 
@@ -96,7 +109,7 @@ def signup(request):
         return {'app_url': request.application_url,
                 'message': 'User with login: {}, already exists.'.format(login),
                 'login': login,
-                'menu_links': menu_links,
+                'menu_links': menu_links_out,
                 'footer_links': footer_links}
         # if password != confirm:
     #     return {'app_url': request.application_url,
@@ -116,15 +129,15 @@ def signup_form(request):
     return {'app_url': request.application_url,
             'message': 'Please SignUp and join the Party!',
             'login': '',
-            'menu_links': menu_links,
+            'menu_links': menu_links_out,
             'footer_links': footer_links}
 
 
 def generate_box(count):
-    """function that generates boxes,
-    count must be int of how many
+    """function that generates instances
+    of Div class, count must be int of how many
     instances you need
-    return list with dictionaries
+    return generator object
     """
     count = int(count)
     if count <= 1:

@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal">
+  <tal:block metal:define-macro="base-paragraph">
+    <p class="foo bar">
+      <tal:block metal:define-slot="body">
+      </tal:block>
+    </p>
+  </tal:block>
+
+  <tal:block metal:define-macro="bold-paragraph"
+             metal:extend-macro="macros['base-paragraph']">
+    <tal:block metal:fill-slot="body">
+      <b class="strong-class">
+        <tal:block metal:define-slot="body"></tal:block>
+      </b>
+    </tal:block>
+  </tal:block>
+
+
+
+        <tal:block metal:define-slot="header">
+        </tal:block>
+        <!-- header ENDs here -->
+
+
+  <tal:block metal:define-macro="header"
+             metal:extend-macro="macros['header']">
+    <tal:block metal:fill-slot="body">
+        <div class="header">
+      <div class="header_container">
+                <div class="header_content">
+                    <div id="header_logo"></div>
+                    <div id="header_menu">
+                        <ul class="nav_top">
+                            <li tal:repeat="menu_link menu_links"><a href="${app_url+menu_link['link']}">${menu_link['text']}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        <tal:block metal:define-slot="body"></tal:block>
+        </div>
+        </div>
+
+    </tal:block>
+  </tal:block>
+</html>

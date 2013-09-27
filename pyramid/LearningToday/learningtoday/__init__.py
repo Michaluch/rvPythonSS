@@ -19,30 +19,32 @@ def main(global_config, **settings):
     Base.metadata.bind = engine
     Base.metadata.create_all(engine)
 
-    authentication_policy = AuthTktAuthenticationPolicy('learn2day', hashalg='sha512')
+    authentication_policy = AuthTktAuthenticationPolicy('learn2day', hashalg='sha512', max_age=1200)
     authorization_policy = ACLAuthorizationPolicy()
 
     config = Configurator(root_factory='learningtoday.models.RootFactory',
                           authentication_policy=authentication_policy,
                           authorization_policy=authorization_policy,
                           settings=settings)
+
+    config.add_jinja2_search_path("learningtoday:templates")
+
     config.add_static_view(
         name='css',
-        path='learningtoday:static/css',
-        cache_max_age=3600
+        path='learningtoday:static/css'
     )
     config.add_static_view(
         name='img',
         path='learningtoday:static/img',
-        cache_max_age=3600
     )
     config.add_static_view(
         name='js',
         path='learningtoday:static/js',
-        cache_max_age=3600
     )
     config.add_route('home', '/')
     config.add_route('logout', '/logout')
     config.add_route('signup', '/signup')
+    config.add_route('jinja', '/jinja')
+
     config.scan()
     return config.make_wsgi_app()

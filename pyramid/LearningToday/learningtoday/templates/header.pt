@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="base.macros['base']">
+    
+    <tal:block metal:fill-slot="header">
+            <!-- Top -->
+            <div class="header_container">
+                <div class="header_content">
+                    <div id="header_logo"></div>
+                    <div id="header_menu">
+                        <ul class="nav_top">
+                            <li tal:repeat="menu_link menu_links"><a href="${app_url+menu_link['link']}">${menu_link['text']}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </tal:block>
+        
+</html>

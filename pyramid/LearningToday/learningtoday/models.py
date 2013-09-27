@@ -22,7 +22,6 @@ from pyramid.security import Deny
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
-
 class Users(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
@@ -41,7 +40,6 @@ class RootFactory(object):
         (Deny, 'mike', 'view'),
         (Allow, Authenticated, 'view')
     ]
-
     def __init__(self, request):
         pass
 

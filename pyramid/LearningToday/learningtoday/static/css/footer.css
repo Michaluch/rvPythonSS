@@ -1,70 +1,70 @@
 /* footer */
-.footer, .push {
-    height: 4em;
+.footer,.push {
+	height:4em;
 }
 
 .footer {
-    width: 100%;
-    background: #404242;
-    position: relative;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    vertical-align: bottom;
-    border-radius: 0 0 0 0;
-    /* 	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); */
+	width:100%;
+	background:#404242;
+	position:relative;
+	left:0;
+	right:0;
+	bottom:0;
+	vertical-align:bottom;
+	border-radius:0 0 0 0;
+/* 	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); */
 }
 
-.footer:before, .footer:after {
-    content: "";
-    position: absolute;
-    z-index: 1;
+.footer:before,.footer:after {
+	content:"";
+	position:absolute;
+	z-index:1;
 }
 
 .footer:before {
-    top: 0;
-    bottom: 5%;
-    left: 0;
-    right: 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    /* 	border-radius: 100px / 10px; */
+	top:0;
+	bottom:5%;
+	left:0;
+	right:0;
+	box-shadow:0 0 10px rgba(0,0,0,0.6);
+/* 	border-radius: 100px / 10px; */
 }
 
 .footer_content {
-    margin-left: auto;
-    margin-right: auto;
-    width: 800px;
+	margin-left:auto;
+	margin-right:auto;
+	width:800px;
 
 }
 
 .footer_content_left {
-    float: left;
-    font-size: .8em;
-    color: gray;
-    margin-top: 5px;
+	float:left;
+	font-size:.8em;
+	color:gray;
+	margin-top:5px;
 }
 
 .footer_content_left p {
-    display: inline;
-    padding-right: 10px;
+	display:inline;
+	padding-right:10px;
 }
 
 .footer_content_right {
-    float: right;
-    font-size: .8em;
-    color: gray;
-    margin-top: 5px;
+	float:right;
+	font-size:.8em;
+	color:gray;
+	margin-top:5px;
 }
 
 .footer_content_right p {
 }
 
 .footer_content_right_icons {
-    background-image: url(../img/Facebook-128.png), url(../img/Twitter-128.png), url(../img/Google-Plus-128.png);
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-position: left bottom, center bottom, right 1px;
-    background-size: 32px 32px, 32px 32px, 32px 32px;
-    padding: 16px 56px;
+	background-image: url(../img/Facebook-128.png), url(../img/Twitter-128.png), url(../img/Google-Plus-128.png);
+	background-repeat: no-repeat, no-repeat, no-repeat;
+	background-position: left bottom, center bottom, right 1px;
+	background-size: 32px 32px, 32px 32px, 32px 32px;
+	padding: 16px 56px;
 }
 
 .foooter_content_right_icons img {

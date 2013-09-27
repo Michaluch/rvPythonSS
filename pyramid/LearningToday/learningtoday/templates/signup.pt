@@ -30,21 +30,23 @@
         <div class="main">
             <!-- Top -->
             <!-- Main Box Wrapper -->
-
-
+         
             <div class="login_signup">
                 <div id="login_form">
                 <h3>${message}</h3>
                     <form id="form" action="${app_url}/signup" method="POST">
-                        <input id="input_login" type="text" name="login" placeholder="Login" value="${login}" required>
-                        <input id="input_password" type="password" name="password" placeholder="Password" required>
-                        <input id="hash" type="hidden" name="hash">
-                        <button id="but_Submit" type="submit">Submit</button>
+                        <input id="inputLogin" type="text" name="login" placeholder="Login" required/>
+                        <br><label id="labelLogin"></label><br/>
+        <input id="inputPass1" type="password" name="password1" placeholder="Password" required/>
+        <br><label id="labelPass1"></label><br/>
+        <input id="inputPass2" type="password" name="password2" placeholder="Repeat password" required/><label id="labelPass2"></label><br/>
+        <input id="hash" type="hidden" name="hash" />
+        <input id="checkBox" type="checkbox" name="checkBox">Are you agree with <a href="#">rules</a>
+        <button id="but_Submit" type="submit" disabled>Login</button>
                     </form>
                 </div>
             </div>
-
-        </div>
+    </div>
 
         <div class="push"></div>
     </div>

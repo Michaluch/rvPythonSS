@@ -16,8 +16,6 @@ learningtoday/__init__.py
 learningtoday/models.py
 learningtoday/tests.py
 learningtoday/views.py
-learningtoday/scripts/__init__.py
-learningtoday/scripts/initializedb.py
 learningtoday/static/css/footer.css
 learningtoday/static/css/header.css
 learningtoday/static/css/main.css
@@ -28,6 +26,12 @@ learningtoday/static/img/logo.png
 learningtoday/static/img/search_bg.png
 learningtoday/static/js/login.js
 learningtoday/static/js/main.js
+learningtoday/static/js/signup.js
+learningtoday/templates/base.pt
+learningtoday/templates/blocks.pt
+learningtoday/templates/header.pt
 learningtoday/templates/home.pt
+learningtoday/templates/layout.jinja2
 learningtoday/templates/login.pt
+learningtoday/templates/root.jinja2
 learningtoday/templates/signup.pt
