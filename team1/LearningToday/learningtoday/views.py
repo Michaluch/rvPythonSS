@@ -9,7 +9,8 @@ from pyramid.security import (
 from .models import (
     DBSession,
     Users,
-    check_login
+    check_login,
+    get_courses,
 )
 
 menu_links_in = [
@@ -89,7 +90,7 @@ class LoginSignUpLogoutViews(object):
             }
 
         user = Users(login, hashed_password, 1)
-        session.add(user)
+        DBSession().add(user)
         headers = remember(self.request, login)
         return HTTPFound(location='/', headers=headers)
 
@@ -124,7 +125,7 @@ class HomeView(object):
             'menu_links': menu_links_in,
             'footer_links': footer_links,
             'boxes': generate_box(num_boxes),
-            'user': userid
+            'user': userid,
         }
 
 
@@ -133,7 +134,12 @@ def generate_box(count):
     returns: list with dictionaries
     each dictionary will have unique keys id and link
     """
+    courses = get_courses()
     count = int(count)
+
+    if count > len(courses):
+        count = len(courses)
+
     if count <= 1:
         count = 3
     elif count % 3 == 1:
@@ -145,5 +151,10 @@ def generate_box(count):
     for i in range(count):
         div_id = 'box-{}'.format(i)
         link = 'Link {}'.format(i + 1)
-        result.append({'div_id': div_id, 'link': link})
+        course_name = courses[i][0]
+        course_description = courses[i][1][:160].strip() + '...'
+        result.append({'div_id': div_id,
+                       'link': link,
+                       'course_name': course_name,
+                       'course_description': course_description})
     return result

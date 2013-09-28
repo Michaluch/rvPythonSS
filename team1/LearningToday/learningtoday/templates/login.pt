@@ -2,6 +2,7 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="${request.static_url('learningtoday:static/css/normalize.css')}" type="text/css">
     <link rel="stylesheet" href="${request.static_url('learningtoday:static/css/header.css')}" type="text/css">
     <link rel="stylesheet" href="${request.static_url('learningtoday:static/css/main.css')}" type="text/css">
     <link rel="stylesheet" href="${request.static_url('learningtoday:static/css/footer.css')}" type="text/css">

@@ -56,16 +56,10 @@
 	margin-top:5px;
 }
 
-.footer_content_right p {
-}
-
 .footer_content_right_icons {
 	background-image: url(../img/Facebook-128.png), url(../img/Twitter-128.png), url(../img/Google-Plus-128.png);
 	background-repeat: no-repeat, no-repeat, no-repeat;
 	background-position: left bottom, center bottom, right 1px;
 	background-size: 32px 32px, 32px 32px, 32px 32px;
 	padding: 16px 56px;
-}
-
-.foooter_content_right_icons img {
 }

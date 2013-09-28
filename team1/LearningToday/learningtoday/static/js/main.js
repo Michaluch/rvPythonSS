@@ -10,7 +10,7 @@ function changeToRandom(name) {
 	document.getElementById(name).style.backgroundColor = temp;
 	
 /* 	alert(temp_rgba); */
-	var css = '#' + name + ':hover{box-shadow:0 0 0px 5px ' + temp_rgba + '}';
+	var css = '#' + name + ':hover{box-shadow:0 0 0px 10px ' + temp_rgba + '}';
 	style = document.createElement('style');
 	if (style.styleSheet) style.styleSheet.cssText = css;
 	else style.appendChild(document.createTextNode(css));
