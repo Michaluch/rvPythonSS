@@ -119,7 +119,7 @@ create table if not exists users(
   f_name varchar(50) not null,
   l_name varchar(50) not null,
   login varchar(20) not null,
-  password varchar(20) not null,
+  password varchar(40) not null,
   pass_salt char(20) not null,
   email varchar(20) not null,
   status tinyint(4) not null,
