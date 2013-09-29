@@ -1,0 +1,25 @@
+<metal:block use-macro="main_template">
+
+  <div metal:fill-slot="content">
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    ${panel('hero', title='Chameleon')}
+
+    <!-- Example row of columns -->
+    <div class="row">
+      <p>${panel('headings')}</p>
+    </div>
+    <div class="row">
+        <p>${panel('contextual_panels')}</p>
+    </div>
+    <div class="row">
+        <h2>User Info</h2>
+        <p>${panel('usermenu',
+            user_info={
+            'first_name': 'Jane',
+            'last_name': 'Doe',
+            'username': 'jdoe'}
+            )}</p>
+    </div>
+  </div>
+
+</metal:block>

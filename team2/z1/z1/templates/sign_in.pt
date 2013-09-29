@@ -1,0 +1,13 @@
+<metal:block use-macro="main_template">    
+    <div metal:fill-slot="content" class="outer-wrapper">
+        <div class="wrapper clearfix">
+            <form id="form-0" name="signinform" method="post">
+                <input id="log" type="text" name="login" maxlength="20"  placeholder="login"/>
+                <input id="pass" type="password" name="password" placeholder="password" />
+                <input type="submit" id="form-0-submit" class="submit-button" type="password" name="Sbmit" value="Sign in!" style="width:338px" />      
+                <input id="hid" type="hidden" name="op_type" value="sign_in" />
+                <input id="hid2" type="hidden" name="hesh" value="some_hesh" />
+            </form>
+        </div>
+    </div>
+</metal:block>

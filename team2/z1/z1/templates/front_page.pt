@@ -1,0 +1,15 @@
+<metal:block use-macro="main_template">
+        <div metal:fill-slot="content">
+             <div class="courses-grid">
+                <div tal:repeat="plate plates" class="course-plate ${plate.color}" tabindex="0">${plate.text}
+                    <div class="course-plate-advert"><a href="${plate.advert_href}">${plate.advert_text}</a></div>
+                </div>
+            </div>
+            <div id="temp">
+                <form method="post" action="http://127.0.0.1:6543/login">
+                    <input type="hidden" name="logout" value="true" />
+                    <input type="submit"  name="submit" value="logout" />
+                </form>
+            </div>
+        </div>
+</metal:block>

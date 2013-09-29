@@ -1,0 +1,88 @@
+/* Footer classes
+*/
+.footer-background {
+    position: relative;
+    bottom: 0px;
+    height: 261px;
+    margin-top: 20px;
+    margin-bottom: -261px;
+    background: #404242
+}
+
+.footer {
+    position: relative;
+    bottom: 0px;
+    height: 261px;
+    width: 1130px;
+    padding: 0px;
+    margin: 0 auto;
+    margin-top: 0px;
+    background: #404242;
+}
+
+.bottom-menu {
+    position: relative;
+    display: inline-block;
+    float: left;
+    width: auto;
+    height: 35px;
+    margin-left: 30px;
+}
+
+.bottom-menu ul {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.bottom-menu ul li {
+    display: inline;
+    line-height: 35px;
+    color: #bbb;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.bottom-menu ul li a,
+.bottom-menu ul li a:active,
+.bottom-menu ul li a:visited {
+    text-decoration: none;
+    color: #bbb;
+}
+
+.bottom-menu ul li a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.followus-bottom {
+    display: inline-block;
+    float: right;
+    margin-right: 30px;
+}
+
+.followus-label {
+    display: block;
+    margin-left: 2px;
+    line-height: 35px;
+    color: #bbb;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.followus-label a {
+    border: 0px;
+}
+
+.follow-logo {
+    float: left;
+    width: 33px;
+    height: 33px;
+    margin: 1px;
+    margin-top: -5px;
+    padding: 0px;
+    border: 0px;
+}

@@ -1,0 +1,15 @@
+<metal:block use-macro="main_template">    
+    <div metal:fill-slot="content" class="outer-wrapper">
+        <div class="wrapper clearfix">
+            <form id="form-0" name="signinform" method="post" action="http://127.0.0.1:6543/front">
+                <input type="text" name="login" maxlength="20"  placeholder="login"/>
+                <input type="password" name="password" placeholder="password" />
+                <input type="text" name="email" placeholder="email" />
+                <input type="text" name="f_name" placeholder="first name" />
+                <input type="text" name="l_name" placeholder="last name" />
+                <input type="submit" id="form-0-submit" class="submit-button" type="password" name="submit" value="submit" />
+                <input type="hidden" name="op_type" value="sign_up" />
+            </form>
+        </div>
+    </div>
+</metal:block>

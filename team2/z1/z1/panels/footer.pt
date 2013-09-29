@@ -1,0 +1,16 @@
+<div class="footer-background"></div>
+<div class="footer">
+    <div class="bottom-menu">
+        <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Terms</a></li>
+        </ul>
+    </div>
+    <div class="followus-bottom clearfix">
+        <div class="followus-label">Follow us:</div>
+        <a href="#"><img class="follow-logo" src="${request.static_url('z1:static/img/facebook-large.png')}"/></a>
+        <a href="#"><img class="follow-logo" src="${request.static_url('z1:static/img/twitter-large.png')}"/></a>
+        <a href="#"><img class="follow-logo" src="${request.static_url('z1:static/img/googlep-large.png')}"/></a>
+    </div>
+</div>

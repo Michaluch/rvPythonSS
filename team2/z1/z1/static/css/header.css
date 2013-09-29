@@ -1,0 +1,89 @@
+html {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-size: 1rem !important;
+}
+
+/* Clearfix class
+*/
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* Header classes
+*/
+.header-background {
+    position: relative;
+    top: 0px;
+    height: 65px;
+    margin-bottom: -65px;
+    background: #404242
+}
+
+.header {
+    position: relative;
+    display: block;
+    top: 0px;
+    height: 65px;
+    width: 1130px;
+    margin: 0 auto;
+    padding: 0px;
+    background: #404242;
+}
+
+.main-logo {
+    position: relative;
+    display: inline-block;
+    top: 5px;
+    height: 55px;
+    width: 240px;
+    background: url(../img/logo.png);
+    background-size: 100% 100%;
+}
+
+.main-menu {
+    position: relative;
+    display: inline-block;
+    float: right;
+    height: 35px;
+    width: auto;
+    padding: 0px;
+}
+
+.main-menu ul {
+    position: relative;
+    display: inline-block;
+    margin: 0px;
+    margin-top: 15px;
+    padding: 0px;
+    list-style: none;
+    line-height: 35px;
+
+}
+
+.main-menu ul li {
+    display: inline;
+    margin-left: 3px;
+    margin-right: 3px;
+    color: #bbb;
+    font-size: 100%;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+.main-menu ul li a,
+.main-menu ul li a:active,
+.main-menu ul li a:visited {
+    color: #bbb;
+}
+
+.main-menu ul li a:hover {
+    color: #fff;
+}
+
+.main-menu ul li.main-menu-divider {
+    text-decoration: none;
+}

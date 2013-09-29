@@ -1,0 +1,5 @@
+      [paste.app_factory]
+      main = z1:main
+      [console_scripts]
+      initialize_z1_db = z1.scripts.initializedb:main
+      

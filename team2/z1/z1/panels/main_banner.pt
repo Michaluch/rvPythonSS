@@ -1,0 +1,7 @@
+<div class="main-banner">
+    <div class="frontpage-search">
+        <form name="frontpage-search-form">
+            <input class="search-input-large" id="search-frontpage" type="text" name="search-field" placeholder="Search courses"/>
+        </form>
+    </div>
+</div>

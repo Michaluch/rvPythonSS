@@ -1,0 +1,213 @@
+/* Courses page classes
+*/
+
+.courses-search-large {
+    position: relative;
+    display: inline-block;
+    float: left;
+    height: 46px;
+    width: 460px;
+    margin-left: 23px;
+    margin-top: 24px;
+
+}
+
+.courses-search-large form {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* form search-input-large style in Common block*/
+
+.wrapper-header-menu {
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-right: 19px;
+    margin-top: 32px;
+}
+
+.wrapper-header-menu ul {
+    display: inline-block;
+    list-style: none;
+    line-height: 35px;
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper-header-menu ul li {
+    float: left;
+    text-decoration: underline;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 1em;
+}
+
+.wrapper-header-menu ul li a,
+.wrapper-header-menu ul li a:active,
+.wrapper-header-menu ul li a:visited {
+    text-decoration: none;
+    color: #868686;
+}
+
+.wrapper-header-menu ul li a:hover {
+    text-decoration: none;
+    color: #333;
+}
+
+.left-sidebar {
+    position: relative;
+    float: left;
+    display: block;
+    width: 305px;
+    border-right: 2px solid #ddd;
+}
+
+.left-sidebar a,
+.left-sidebar a:hover,
+.left-sidebar a:active,
+.left-sidebar a:visited {
+    text-decoration: none;
+}
+
+.left-sidebar .sidebar-item {
+    position: relative;
+    display: block;
+    height: 42px;
+    width: 285px;
+    line-height: 42px;
+    border: 2px solid #ddd;
+    margin-top: -2px;
+    margin-right: -2px;
+    margin-left: -2px;
+    padding-left: 20px;
+    vertical-align: middle;
+    color: #555;
+    transition: width 0.3s ease 0s, margin-left 0.3s ease 0s, color 0.3s ease 0s, background-color 0.3s ease 0s, border 0.1s ease 0s;
+}
+
+.left-sidebar .sidebar-item:hover {
+    z-index: 100;
+    width: 288px;
+    margin-left: -5px;
+    background: #eee;
+    border: 2px solid #bbb;
+    color: #222;
+}
+
+.content {
+    position: relative;
+    display: block;
+    float: right;
+    width: 819px;
+}
+
+.course-descr-outer {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    height: 88px;
+    border-top: 2px solid #ddd;
+    border-left: 2px solid #ddd;
+    margin-left: -2px;
+    margin-top: -2px;
+}
+
+.course-descr-logo {
+    position: relative;
+    display: block;
+    float: left;
+    width: 155px;
+    height: 86px;
+}
+
+.course-descr-logo img {
+    width: 147px;
+    height: 77px;
+    margin-left: 3px;
+    margin-top: 3px;
+    border: 1px solid #ddd;
+}
+
+.course-descr-inner {
+    position: relative;
+    display: block;
+    float: left;
+    width: 621px;
+    margin: 3px;
+    margin-bottom: 6px;
+}
+
+.course-descr-title {
+    display: block;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9em;
+    margin-bottom: 3px;
+}
+
+.course-descr-title a,
+.course-descr-title a:hover,
+.course-descr-title a:active,
+.course-descr-title a:visited {
+    color: #3493c4;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.course-descr-text {
+    text-align: justify;
+    font-size: 0.9em;
+}
+
+.course-descr-rating {
+    position: relative;
+    display: block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    left: 3px;
+    top: 50%;
+    margin-top: -15px;
+}
+
+.rating-1 {
+    width: 30px;
+    height: 30px;
+    background: url(../img/stars-small.png);
+    background-position: 0px 0px;
+}
+
+.rating-2 {
+    width: 30px;
+    height: 30px;
+    background: url(../img/stars-small.png);
+    background-position: -30px 0px;
+}
+
+.rating-3 {
+    width: 30px;
+    height: 30px;
+    background: url(../img/stars-small.png);
+    background-position: -60px 0px;
+}
+
+.rating-4 {
+    width: 30px;
+    height: 30px;
+    background: url(../img/stars-small.png);
+    background-position: 0px -30px;
+}
+
+.rating-5 {
+    width: 30px;
+    height: 30px;
+    background: url(../img/stars-small.png);
+    background-position: -30px -30px;
+}
+
+.rating-6 {
+    width: 30px;
+    height: 30px;
+    background: url(../img/stars-small.png);
+    background-position: -60px -30px;
+}
