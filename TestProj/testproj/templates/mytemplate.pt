@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Pyramid Web Framework</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="${ request.static_url('testproj:static/editUser.js')}"></script>
+    <style type="text/css">
+        #inputMessage {
+          color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <input id="message" value="" />
+        <button id="but1">Send</button>
+    </div>
+</body>
+</html>
